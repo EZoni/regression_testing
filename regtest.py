@@ -586,6 +586,7 @@ def test_suite(argv):
         # copy the necessary files over to the run directory
         #----------------------------------------------------------------------
         suite.log.log("copying files to run directory...")
+        suite.log.log("path to input file: {}".format(test.inputFile))
 
         needed_files = []
         if executable is not None:

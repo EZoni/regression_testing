@@ -913,6 +913,10 @@ class Suite(object):
                 if not self.repos["source"].comp_string is None:
                     build_opts += self.repos["source"].comp_string + " "
 
+            # Remove duplicate build options from test.addToCompileString to avoid duplicate builds
+            build_opts_new = []
+            [build_opts_new.append(s) for s in test.addToCompileString.split() if s not in build_opts_new]
+            test.addToCompileString = ' '.join(build_opts_new)
             if not test.addToCompileString == "":
                 build_opts += test.addToCompileString + " "
 

@@ -746,10 +746,16 @@ def test_suite(argv):
                 if suite.check_file_name != "none":
                     base_cmd += " {}={}_chk ".format(suite.check_file_name, test.name)
 
+                # Copy again runtime_params into restart execution command
+                base_cmd += "{} {}".format(suite.globalAddToExecString, test.runtime_params)
+
             elif suite.sourceTree == "F_Src" or test.testSrcTree == "F_Src":
 
                 base_cmd = "./{} {} --plot_base_name {}_plt --check_base_name {}_chk --chk_int 0 --restart {} {}".format(
                     executable, test.inputFile, test.name, test.name, test.restartFileNum, suite.globalAddToExecString)
+
+                # Copy again runtime_params into restart execution command
+                base_cmd += "{} {}".format(suite.globalAddToExecString, test.runtime_params)
 
             suite.run_test(test, base_cmd)
 

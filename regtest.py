@@ -757,6 +757,10 @@ def test_suite(argv):
                 # Copy again runtime_params into restart execution command
                 base_cmd += "{} {}".format(suite.globalAddToExecString, test.runtime_params)
 
+            if test.customRunCmd is not None:
+                base_cmd = test.customRunCmd
+                base_cmd += " amr.restart={}".format(restart_file)
+
             suite.run_test(test, base_cmd)
 
         test.wall_time = time.time() - test.wall_time

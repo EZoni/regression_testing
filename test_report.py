@@ -376,6 +376,11 @@ def report_single_test(suite, test, tests, failure_msg=None):
                 suite.log.testfail("{} COMPILE FAILED".format(test.name))
             elif test.crashed:
                 sf.write("CRASHED\n")
+                backtrace = test.find_backtrace()
+                for btf in backtrace:
+                    suite.log.warn("+++ Next backtrace: {} +++".format(btf))
+                    suite.log.warn(open(btf, 'r').read())
+                    suite.log.warn("+++ End of backtrace: {} +++\n".format(btf))
                 suite.log.testfail("{} CRASHED (backtraces produced)".format(test.name))
             else:
                 sf.write("FAILED\n")

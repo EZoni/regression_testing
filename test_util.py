@@ -238,7 +238,7 @@ class Log(object):
             email_developers()
 
         self.close_log()
-        sys.exit()
+        sys.exit(1)
 
     def testfail(self, string):
         nstr = self.fail_color + string + self.end_color

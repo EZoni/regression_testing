@@ -800,6 +800,9 @@ def test_suite(argv):
                 if not type(params.convert_type(test.nlevels)) is int:
                     test.nlevels = ""
 
+            if not test.doComparison:
+                test.compare_successful = not test.crashed
+
             if args.make_benchmarks is None and test.doComparison:
 
                 suite.log.log("doing the comparison...")
